@@ -7,10 +7,15 @@ class Users extends React.Component {
 	}
 
 	renderUser(userId, index) {
+		// Don't render current user
+		if (this.props.user === userId) {
+			return ''
+		}
+
 		const user = this.props.users[userId]
 		return (
 			<li key={index}>
-				{user.userId}
+				<button onClick={() => {this.props.selectRecipient(user.userId)}}>{user.userId}</button>
 			</li>
 		)
 	}
