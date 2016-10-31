@@ -1,9 +1,14 @@
 import React from 'react'
+import Contacts from './Contacts'
 
 class Chat extends React.Component {
 	render() {
 		return (
-			<p>Chat</p>
+			<div className="chat">
+				<p>Chat</p>
+
+				<Contacts />
+			</div>
 		)
 	}
 }

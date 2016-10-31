@@ -9,7 +9,7 @@ class App extends Component {
           <h2>Welcome to this React chat app</h2>
         </div>
 
-        // Main App components
+        { this.props.children }
       </div>
     );
   }
