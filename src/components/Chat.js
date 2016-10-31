@@ -31,12 +31,12 @@ class Chat extends React.Component {
 			context: this,
 			state: 'users',
 			then() {this.checkForUser(userId)},
-    	})
+		})
 
-    	this.messagesRef = base.syncState(`messages/`, {
+		this.messagesRef = base.syncState(`messages/`, {
 			context: this,
 			state: 'messages',
-    	})
+		})
 	}
 
 	checkForUser(userId) {

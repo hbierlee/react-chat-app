@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import App from './App';
-import Login from './components/Login';
-import Chat from './components/Chat';
-import './index.css';
+import App from './App'
+import Login from './components/Login'
+import Chat from './components/Chat'
+import './index.css'
 
 const Root = () => {
 	return (
@@ -20,4 +20,4 @@ const Root = () => {
 ReactDOM.render(
 	<Root />,
 	document.getElementById('root')
-);
+)
