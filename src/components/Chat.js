@@ -46,10 +46,10 @@ class Chat extends React.Component {
 
 	checkForUser(userId) {
 		if (this.state.users.hasOwnProperty(userId)) {
-			console.log(`User ${userId} found`)
+			// console.log(`User ${userId} found`)
+			// TODO do something else? load last recipient?
 		}
 		else {
-			console.log(`Add new user ${userId}`)
 			this.createUser({userId})
 		}
 	}
@@ -60,8 +60,11 @@ class Chat extends React.Component {
 	}
 
 	renderMessage(message, index) {
+		// parse unix timestamp String in miliseconds
+		const timeFromNow = moment(message.timestamp, 'x').fromNow()
+		
 		return (
-			<li key={index}>{`${message.from}: ${message.content} [${moment(message.timestamp * 1000).fromNow()}]`}</li>
+			<li key={index}>{`${message.from}: ${message.content} [${timeFromNow}]`}</li>
 		)
 	}
 
@@ -82,9 +85,22 @@ class Chat extends React.Component {
 
 	sendHandler(event) {
 		event.preventDefault()
-		console.log(event.target)
-	}
+		const to = this.state.recipient
+		const content = this.state.unsendMessages[to]
+		const timestamp = moment().valueOf()
 
+		const newMessage = {
+			from: this.props.params.userId,
+			to,
+			content,
+			timestamp,
+		}
+
+		const messages = [...this.state.messages]
+		messages.push(newMessage)
+		this.setState({messages: messages})
+	}
+	
 	render() {
 		const user = this.props.params.userId
 
@@ -92,7 +108,8 @@ class Chat extends React.Component {
 		const messages = this.state.messages
 			.filter((message) => {
 				return (message.from === this.state.recipient && message.to === user)
-				|| (message.to === this.state.recipient && message.from === user)})
+				|| (message.to === this.state.recipient && message.from === user)
+			})
 			.sort((a,b) => {return a.timestamp > b.timestamp})
 
 		return (
