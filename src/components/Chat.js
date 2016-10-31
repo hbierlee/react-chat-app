@@ -11,12 +11,15 @@ class Chat extends React.Component {
 		this.createUser = this.createUser.bind(this)
 		this.checkForUser = this.checkForUser.bind(this)
 		this.selectRecipient = this.selectRecipient.bind(this)
+		this.sendHandler = this.sendHandler.bind(this)
+		this.changeHandler = this.changeHandler.bind(this)
 
 		// init state
 		this.state = {
 			users: {},
 			messages: [],
 			recipient: "",
+			unsendMessages: {}
 		}
 	}
 
@@ -66,6 +69,22 @@ class Chat extends React.Component {
 		this.setState({recipient: userId})
 	}
 
+	changeHandler(event) {
+		if (!this.state.recipient) {
+			return
+		}
+
+		const unsendMessage = event.target.value
+		const unsendMessages = {...this.state.unsendMessages}
+		unsendMessages[this.state.recipient] = unsendMessage
+		this.setState({unsendMessages})
+	}
+
+	sendHandler(event) {
+		event.preventDefault()
+		console.log(event.target)
+	}
+
 	render() {
 		const user = this.props.params.userId
 
@@ -79,10 +98,18 @@ class Chat extends React.Component {
 		return (
 			<div className="Chat">
 				<h1>Welcome, {this.props.params.userId}</h1>
-				<em>Chatting with {this.state.recipient ? this.state.recipient : ' nobody'}</em>
+
+				<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
+
 				<ul className="Chat-messages">
 					{messages.map(this.renderMessage)}
-				</ul>				
+				</ul>
+
+				<form className="Chat-form" onSubmit={this.sendHandler}>
+					<input type="text" className="Chat-input" onChange={this.changeHandler}></input>
+					<button className="Chat-send" type="submit">Send</button>
+				</form>
+
 				<Users user={this.props.params.userId} users={this.state.users} selectRecipient={this.selectRecipient}/>
 			</div>
 		)
