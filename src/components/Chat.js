@@ -1,6 +1,7 @@
 import React from 'react'
 import Users from './Users'
 import base from '../base'
+import moment from 'moment'
 
 class Chat extends React.Component {
 	constructor(props) {
@@ -13,7 +14,7 @@ class Chat extends React.Component {
 		// init state
 		this.state = {
 			users: {},
-			messages: ['a', 'b', 'c'],
+			messages: [],
 		}
 	}
 
@@ -26,10 +27,15 @@ class Chat extends React.Component {
 	componentWillMount() {
 		const userId = this.props.params.userId
 
-		this.ref = base.syncState(`users/`, {
+		this.usersRef = base.syncState(`users/`, {
 			context: this,
 			state: 'users',
 			then() {this.checkForUser(userId)},
+    	})
+
+    	this.messagesRef = base.syncState(`messages/`, {
+			context: this,
+			state: 'messages',
     	})
 	}
 
@@ -44,12 +50,13 @@ class Chat extends React.Component {
 	}
 
 	componentWillUnmount() {
-		base.removeBinding(this.ref)
+		base.removeBinding(this.usersRef)
+		base.removeBinding(this.messagesRef)
 	}
 
 	renderMessage(message, index) {
 		return (
-			<li key={index}>{message}</li>
+			<li key={index}>{`${message.from}: ${message.content} [${moment(message.timestamp * 1000).fromNow()}]`}</li>
 		)
 	}
 
@@ -60,8 +67,7 @@ class Chat extends React.Component {
 				
 				<ul className="Chat-messages">
 					{this.state.messages.map(this.renderMessage)}
-				</ul>
-				
+				</ul>				
 				<Users users={this.state.users}/>
 			</div>
 		)
