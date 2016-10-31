@@ -1,5 +1,5 @@
 import React from 'react'
-import Contacts from './Contacts'
+import Users from './Users'
 import base from '../base'
 
 class Chat extends React.Component {
@@ -12,6 +12,7 @@ class Chat extends React.Component {
 
 		// init state
 		this.state = {
+			users: {},
 			messages: ['a', 'b', 'c'],
 		}
 	}
@@ -24,8 +25,6 @@ class Chat extends React.Component {
 
 	componentWillMount() {
 		const userId = this.props.params.userId
-
-		console.log("Start chat for " + userId)
 
 		this.ref = base.syncState(`users/`, {
 			context: this,
@@ -58,11 +57,12 @@ class Chat extends React.Component {
 		return (
 			<div className="Chat">
 				<h1>Welcome, {this.props.params.userId}</h1>
-			
+				
 				<ul className="Chat-messages">
 					{this.state.messages.map(this.renderMessage)}
 				</ul>
-				<Contacts/>
+				
+				<Users users={this.state.users}/>
 			</div>
 		)
 	}
