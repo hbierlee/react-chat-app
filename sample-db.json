@@ -1,0 +1,31 @@
+{
+	"messages": [{
+		"to": "Piet",
+		"from": "Henk",
+		"content": "Hello",
+		"timestamp": "1477937115" 
+	}, {
+		"to": "Henk",
+		"from": "Piet",
+		"content": "Hi!",
+		"timestamp": "1477937120"
+	}, {
+		"to": "Piet",
+		"from": "Henk",
+		"content": "Bye",
+		"timestamp": "1477937135"
+	}, {
+		"to": "Henk",
+		"from": "Piet",
+		"content": "Bye bye",
+		"timestamp": "1477937145"
+	} ],
+	"users": {
+		"Henk": {
+			"userId": "Henk"
+		},
+		"Piet": {
+			"userId": "Piet"
+		}
+	}
+}
