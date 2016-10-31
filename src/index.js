@@ -11,7 +11,7 @@ const Root = () => {
 		<Router history={browserHistory}>
 			<Route path="/" component={App}>
 				<IndexRoute component={Login} />
-				<Route path="/chat" component={Chat} />
+				<Route path="/user/:userId" component={Chat} />
 			</Route>
 		</Router>
 	)

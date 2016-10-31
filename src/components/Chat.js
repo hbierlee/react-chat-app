@@ -5,8 +5,8 @@ class Chat extends React.Component {
 	render() {
 		return (
 			<div className="chat">
-				<p>Chat</p>
-
+				<h1>Welcome, {this.props.params.userId}</h1>
+			
 				<Contacts />
 			</div>
 		)
