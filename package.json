@@ -51,6 +51,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "flexbox-react": "^4.0.2",
     "moment": "^2.15.2",
     "re-base": "^2.2.0",
