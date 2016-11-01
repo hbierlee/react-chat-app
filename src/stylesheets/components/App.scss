@@ -24,7 +24,7 @@ body {
 
 //for debugging
 div {
-	// border: 2px red solid;
+	border: 2px red solid;
 }
 
 .Chat {
@@ -35,6 +35,7 @@ div {
 li {
     list-style-type: none;	
     size: 100%;
+    border: 2px blue solid;
 }
 
 ul {

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import moment from 'moment'
+import '../stylesheets/components/Message.scss'
 
-export class Message extends Component {
+class Message extends Component {
 	render() {
 		const {message, index} = this.props
-
 		// parse unix timestamp String in miliseconds
 		const timeFromNow = moment(message.timestamp, 'x').fromNow()
+		
 		return (
-			<li className="Chat-message" key={index}>
+			<li className="Message">
 				<span className="Chat-message-from">
 					{message.from}:&nbsp;
 				</span>
@@ -22,3 +23,5 @@ export class Message extends Component {
 		);
 	}
 }
+
+export default Message
