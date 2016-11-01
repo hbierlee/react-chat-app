@@ -22,7 +22,7 @@ class Login extends React.Component {
 	render() {
 		return (
 			<div className="Login">
-				<p>Login</p>
+				<h2>Login</h2>
 				<form className="Login-form" onSubmit={this.handleSubmit}>
 					<input type="text" required placeholder="Name" defaultValue="Henk" onChange={this.handleChange}/>
 					<button type="submit">Login</button>

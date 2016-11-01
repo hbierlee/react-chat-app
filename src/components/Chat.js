@@ -130,7 +130,7 @@ class Chat extends React.Component {
 
 		return (
 			<div className="Chat">
-				<h1>Welcome, {this.props.params.userId}</h1>
+				<h2>Welcome, {this.props.params.userId}</h2>
 
 				<p>
 					<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
