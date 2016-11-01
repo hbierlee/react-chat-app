@@ -1,13 +1,14 @@
 import React from 'react'
 import Users from './Users'
+import Message from './Message'
 import base from '../base'
 import moment from 'moment'
+import Flexbox from 'flexbox-react'
 
 class Chat extends React.Component {
 	constructor(props) {
 		super(props)
 
-		this.renderMessage = this.renderMessage.bind(this)
 		this.createUser = this.createUser.bind(this)
 		this.checkForUser = this.checkForUser.bind(this)
 		this.selectRecipient = this.selectRecipient.bind(this)
@@ -57,25 +58,6 @@ class Chat extends React.Component {
 	componentWillUnmount() {
 		base.removeBinding(this.usersRef)
 		base.removeBinding(this.messagesRef)
-	}
-
-	renderMessage(message, index) {
-		// parse unix timestamp String in miliseconds
-		const timeFromNow = moment(message.timestamp, 'x').fromNow()
-		
-		return (
-			<li key={index}>
-				<span className="Chat-message-from">
-					{message.from}:&nbsp;
-				</span>
-				<span className="Chat-message-content">
-					{message.content}&nbsp;
-				</span>
-				<span className="Chat-message-time">
-					[{timeFromNow}]
-				</span>
-			</li>
-		)
 	}
 
 	selectRecipient(userId) {
@@ -129,38 +111,42 @@ class Chat extends React.Component {
 		const inputValue = this.state.unsendMessages[this.state.recipient] ? this.state.unsendMessages[this.state.recipient] : ""
 
 		return (
-			<div className="Chat">
-				<h2>Welcome, {this.props.params.userId}</h2>
+			<Flexbox flexDirection="row" className="Chat">
+				<Flexbox flexGrow={1} minWidth="240px">
+					<Users user={this.props.params.userId} users={this.state.users} selectRecipient={this.selectRecipient}/>
+				</Flexbox>
+				
+				<Flexbox flexGrow={2} flexDirection="column">
+					<h2>Welcome, {this.props.params.userId}</h2>
+					<p>
+						<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
+					</p>
 
-				<p>
-					<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
-				</p>
+					<ul className="Chat-messages">
+						{messages.map((message, index) => {<Message message={message} index={index}/>})}
+					</ul>
 
-				<ul className="Chat-messages">
-					{messages.map(this.renderMessage)}
-				</ul>
-
-				<form className="Chat-form" onSubmit={this.submitHandler}>
-					<input
-						type="text"
-						className="Chat-input"
-						onChange={this.inputChangeHandler}
-						value={inputValue}
-						disabled={!this.state.recipient}
-					/>
-					
-					<button
-						className="Chat-send"
-						type="submit"
-						disabled={!this.state.recipient}
-					>
-						Send
-					</button>
-				</form>
-
-				<Users user={this.props.params.userId} users={this.state.users} selectRecipient={this.selectRecipient}/>
-			</div>
+					<form className="Chat-form" onSubmit={this.submitHandler}>
+						<input
+							type="text"
+							className="Chat-input"
+							onChange={this.inputChangeHandler}
+							value={inputValue}
+							disabled={!this.state.recipient}
+						/>
+						
+						<button
+							className="Chat-send"
+							type="submit"
+							disabled={!this.state.recipient}
+						>
+							Send
+						</button>
+					</form>
+				</Flexbox>
+			</Flexbox>
 		)
+
 	}
 }
 

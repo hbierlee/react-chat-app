@@ -1,4 +1,5 @@
 import React from 'react'
+import Flexbox from 'flexbox-react'
 
 class Users extends React.Component {
 	constructor(props) {
@@ -15,7 +16,9 @@ class Users extends React.Component {
 		const user = this.props.users[userId]
 		return (
 			<li key={index}>
-				<button onClick={() => {this.props.selectRecipient(user.userId)}}>{user.userId}</button>
+				<Flexbox className="Users-user" minHeight="60px">
+					<button onClick={() => {this.props.selectRecipient(user.userId)}}>{user.userId}</button>
+			 	</Flexbox>
 			</li>
 		)
 	}
@@ -27,7 +30,9 @@ class Users extends React.Component {
 			<div className="Users">
 				<h2>Users</h2>
 				<ul>
-					{Object.keys(users).map(this.renderUser)}
+					<Flexbox flexDirection="column">
+						{Object.keys(users).map(this.renderUser)}
+					</Flexbox>
 				</ul>
 			</div>
 		)

@@ -16,3 +16,28 @@ body {
 	font-family: $body-font;
 	color: $color2;
 }
+
+.App {
+	padding: 24px;
+	justify-content: center;
+}
+
+//for debugging
+div {
+	// border: 2px red solid;
+}
+
+.Chat {
+	padding: 12px;
+	background-color: $color5;
+}
+
+li {
+    list-style-type: none;	
+    size: 100%;
+}
+
+ul {
+	size: 100%;
+	padding: 0;
+}
