@@ -1,7 +1,18 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+@import '../palette';
+
+// import Montserrat and Open Sans fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
+
+$body-font: 'Montserrat', sans-serif;
+$heading-font: 'Open Sans', sans-serif;
+
+h1, h2 {
+	font-family: $heading-font;
+	color: $color1;
+}
 
 body {
-  font: 100% $font-stack;
-  color: $primary-color;
+	background-color: $color4;
+	font-family: $body-font;
+	color: $color2;
 }
