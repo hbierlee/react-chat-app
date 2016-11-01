@@ -111,7 +111,7 @@ class Chat extends React.Component {
 		const inputValue = this.state.unsendMessages[this.state.recipient] ? this.state.unsendMessages[this.state.recipient] : ""
 
 		return (
-			<Flexbox flexDirection="row" flexBasis="100%" className="Chat">
+			<Flexbox className="Chat" flexDirection="row">
 				<Flexbox flexGrow={1} minWidth="240px" flexBasis="30%">
 					<Users user={this.props.params.userId} users={this.state.users} selectRecipient={this.selectRecipient}/>
 				</Flexbox>
@@ -123,7 +123,11 @@ class Chat extends React.Component {
 					</p>
 
 					<ul className="Chat-messages">
-						{messages.map((message, index) => <Message message={message} key={index}/>)}
+						{messages.map((message, index) => <Message
+							message={message}
+							messageByUser={message.from === this.props.params.userId}
+							key={index}
+						/>)}
 					</ul>
 
 					<form className="Chat-form" onSubmit={this.submitHandler}>

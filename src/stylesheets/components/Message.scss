@@ -1,4 +1,28 @@
+@import '../palette';
+
 .Message {
-	
-	
+	// min-width: 120px;
+	width: auto;
+	height: auto;
+	padding: 1px 6px;
+	margin-bottom: 12px;
+
+	//border radius
+	border: 0px solid #000000;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+
+	//box shadow
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+}
+
+.messageByUser {
+	background-color: $background-user;
+}
+
+.messageByRecipient {
+	background-color: $background-recipient;
 }

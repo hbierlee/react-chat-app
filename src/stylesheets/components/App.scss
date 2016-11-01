@@ -8,13 +8,13 @@ $heading-font: 'Open Sans', sans-serif;
 
 h1, h2 {
 	font-family: $heading-font;
-	color: $color1;
+	color: $heading;
 }
 
 body {
-	background-color: $color4;
+	background-color: $background;
 	font-family: $body-font;
-	color: $color2;
+	color: $body;
 }
 
 .App {
@@ -24,21 +24,21 @@ body {
 
 //for debugging
 div {
-	border: 2px red solid;
+	// border: 2px red solid;
 }
 
 .Chat {
 	padding: 12px;
-	background-color: $color5;
+	// background-color: $color5;
 }
 
 li {
     list-style-type: none;	
-    size: 100%;
+    // size: 100%;
     border: 2px blue solid;
 }
 
 ul {
-	size: 100%;
+	// size: 100%;
 	padding: 0;
 }
