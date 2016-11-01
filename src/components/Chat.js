@@ -11,15 +11,15 @@ class Chat extends React.Component {
 		this.createUser = this.createUser.bind(this)
 		this.checkForUser = this.checkForUser.bind(this)
 		this.selectRecipient = this.selectRecipient.bind(this)
-		this.sendHandler = this.sendHandler.bind(this)
-		this.changeHandler = this.changeHandler.bind(this)
+		this.submitHandler = this.submitHandler.bind(this)
+		this.inputChangeHandler = this.inputChangeHandler.bind(this)
 
 		// init state
 		this.state = {
 			users: {},
 			messages: [],
 			recipient: "",
-			unsendMessages: {}
+			unsendMessages: {},
 		}
 	}
 
@@ -64,7 +64,17 @@ class Chat extends React.Component {
 		const timeFromNow = moment(message.timestamp, 'x').fromNow()
 		
 		return (
-			<li key={index}>{`${message.from}: ${message.content} [${timeFromNow}]`}</li>
+			<li key={index}>
+				<span className="Chat-message-from">
+					{message.from}:&nbsp;
+				</span>
+				<span className="Chat-message-content">
+					{message.content}&nbsp;
+				</span>
+				<span className="Chat-message-time">
+					[{timeFromNow}]
+				</span>
+			</li>
 		)
 	}
 
@@ -72,18 +82,18 @@ class Chat extends React.Component {
 		this.setState({recipient: userId})
 	}
 
-	changeHandler(event) {
+	inputChangeHandler(event) {
+		//if no recipient is selected
 		if (!this.state.recipient) {
 			return
 		}
 
-		const unsendMessage = event.target.value
 		const unsendMessages = {...this.state.unsendMessages}
-		unsendMessages[this.state.recipient] = unsendMessage
+		unsendMessages[this.state.recipient] = event.target.value
 		this.setState({unsendMessages})
 	}
 
-	sendHandler(event) {
+	submitHandler(event) {
 		event.preventDefault()
 		const to = this.state.recipient
 		const content = this.state.unsendMessages[to]
@@ -98,7 +108,11 @@ class Chat extends React.Component {
 
 		const messages = [...this.state.messages]
 		messages.push(newMessage)
-		this.setState({messages: messages})
+
+		const unsendMessages = {...this.state.unsendMessages}
+		unsendMessages[to] = ""
+
+		this.setState({messages, unsendMessages})
 	}
 	
 	render() {
@@ -112,19 +126,36 @@ class Chat extends React.Component {
 			})
 			.sort((a,b) => {return a.timestamp > b.timestamp})
 
+		const inputValue = this.state.unsendMessages[this.state.recipient] ? this.state.unsendMessages[this.state.recipient] : ""
+
 		return (
 			<div className="Chat">
 				<h1>Welcome, {this.props.params.userId}</h1>
 
-				<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
+				<p>
+					<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
+				</p>
 
 				<ul className="Chat-messages">
 					{messages.map(this.renderMessage)}
 				</ul>
 
-				<form className="Chat-form" onSubmit={this.sendHandler}>
-					<input type="text" className="Chat-input" onChange={this.changeHandler}></input>
-					<button className="Chat-send" type="submit">Send</button>
+				<form className="Chat-form" onSubmit={this.submitHandler}>
+					<input
+						type="text"
+						className="Chat-input"
+						onChange={this.inputChangeHandler}
+						value={inputValue}
+						disabled={!this.state.recipient}
+					/>
+					
+					<button
+						className="Chat-send"
+						type="submit"
+						disabled={!this.state.recipient}
+					>
+						Send
+					</button>
 				</form>
 
 				<Users user={this.props.params.userId} users={this.state.users} selectRecipient={this.selectRecipient}/>
