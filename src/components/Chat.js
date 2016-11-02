@@ -97,6 +97,18 @@ class Chat extends React.Component {
 		this.setState({messages, unsendMessages})
 	}
 	
+	componentWillUpdate() {
+		var node = this.chatMessages
+		this.shouldScrollBottom = node.scrollTop + node.offsetHeight === node.scrollHeight;
+	}
+
+	componentDidUpdate() {
+		if (this.shouldScrollBottom) {
+			var node = this.chatMessages
+			node.scrollTop = node.scrollHeight
+		}
+	}
+
 	render() {
 		const user = this.props.params.userId
 
@@ -124,7 +136,9 @@ class Chat extends React.Component {
 						</p>
 					</div>
 
-					<div className="Chat-messages">
+					<div
+						className="Chat-messages"
+						ref={(node) => this.chatMessages = node}>
 						{messages.map((message, index) => <Message
 							message={message}
 							messageByUser={message.from === this.props.params.userId}
