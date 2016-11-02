@@ -1,0 +1,32 @@
+@import './palette';
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
+
+$body-font: 'Montserrat', sans-serif;
+$heading-font: 'Open Sans', sans-serif;
+
+h1, h2 {
+	font-family: $heading-font;
+	color: $heading;
+}
+
+body {
+	background-color: $background;
+	font-family: $body-font;
+	color: $body;
+}
+
+//for debugging
+div {
+	// border: 2px red solid;
+}
+
+li {
+    list-style-type: none;	
+    // size: 100%;
+    border: 2px blue solid;
+}
+
+ul {
+	// size: 100%;
+	padding: 0;
+}

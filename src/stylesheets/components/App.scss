@@ -1,44 +1,9 @@
-@import '../palette';
-
-// import Montserrat and Open Sans fonts
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
-
-$body-font: 'Montserrat', sans-serif;
-$heading-font: 'Open Sans', sans-serif;
-
-h1, h2 {
-	font-family: $heading-font;
-	color: $heading;
-}
-
-body {
-	background-color: $background;
-	font-family: $body-font;
-	color: $body;
-}
-
 .App {
 	padding: 24px;
 	justify-content: center;
 }
 
-//for debugging
-div {
-	// border: 2px red solid;
-}
-
 .Chat {
 	padding: 12px;
 	// background-color: $color5;
-}
-
-li {
-    list-style-type: none;	
-    // size: 100%;
-    border: 2px blue solid;
-}
-
-ul {
-	// size: 100%;
-	padding: 0;
 }

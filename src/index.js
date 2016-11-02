@@ -4,7 +4,8 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import App from './App'
 import Login from './components/Login'
 import Chat from './components/Chat'
-import './index.css'
+
+import './stylesheets/index.scss'
 
 const Root = () => {
 	return (
