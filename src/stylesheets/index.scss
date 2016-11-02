@@ -1,33 +1,50 @@
 @import './palette';
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
 
+// fonts
 $body-font: 'Montserrat', sans-serif;
 $heading-font: 'Open Sans', sans-serif;
+
+$body-padding: 24px;
 
 h1, h2 {
 	font-family: $heading-font;
 	color: $heading;
 }
 
-body {
-	background-color: $background;
+h1 {
+	font-size: 36px; //fallback
+	font-size: 5.9vw;
+}
+
+h2 {
+	font-size: 24px; //fallback
+	font-size: 3.0vh;
+}
+
+p {
+	font-size: 18px; //fallback
+	font-size: 2vmin;
+
 	font-family: $body-font;
-	color: $body;
+}
+
+html {
+	width: 100vw;
+	height: 100vh;
 	margin: 0;
 }
 
-//for debugging
-div {
-	// border: 2px red solid;
+body {
+	padding: $body-padding;
+	margin: 0px;
+	height: calc(100% - 2 * #{$body-padding});
+	width: calc(100% - 2 * #{$body-padding});
+	background-color: $background;
+	color: $body;
 }
 
-li {
-    // list-style-type: none;	
-    // size: 100%;
-    // border: 2px blue solid;
-}
-
-ul {
-	// size: 100%;
-	// padding: 0;
+#root {
+	size: 100%;
+	height: 100%;
 }
