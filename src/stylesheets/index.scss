@@ -13,6 +13,7 @@ body {
 	background-color: $background;
 	font-family: $body-font;
 	color: $body;
+	margin: 0;
 }
 
 //for debugging
@@ -21,12 +22,12 @@ div {
 }
 
 li {
-    list-style-type: none;	
+    // list-style-type: none;	
     // size: 100%;
-    border: 2px blue solid;
+    // border: 2px blue solid;
 }
 
 ul {
 	// size: 100%;
-	padding: 0;
+	// padding: 0;
 }

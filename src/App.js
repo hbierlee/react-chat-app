@@ -5,15 +5,15 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<div element="header" height="60px">
+				<div className="header">
 					<h1>💬&nbsp;React chat app</h1>
 				</div>
 
-				<div>
+				<div className="content">
 					{ React.cloneElement(this.props.children, this.props) }
 				</div>
 
-				<div element="footer" height="60px">
+				<div className="footer">
 					<p>By Henk Bierlee</p>
 				</div>
 			</div>
