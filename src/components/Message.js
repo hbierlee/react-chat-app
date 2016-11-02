@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import classNames from 'classnames'
 import '../stylesheets/components/Message.scss'
-// import moment from 'moment'
+import moment from 'moment'
 
 class Message extends Component {
 	render() {
 		const message = this.props.message
 
 		// parse unix timestamp String in miliseconds
-		// const timeFromNow = moment(message.timestamp, 'x').fromNow()
+		const timeFromNow = moment(message.timestamp, 'x').fromNow()
 		
 		console.log(this.props.messageByUser)
 		const className = classNames(
@@ -19,8 +19,11 @@ class Message extends Component {
 
 		return (
 			<li className={className}>
-				<p>
+				<p className="Message-content">
 					{message.content}
+				</p>
+				<p className="Message-time">
+					{timeFromNow}
 				</p>
 			</li>
 		);

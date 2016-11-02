@@ -3,6 +3,7 @@ import Users from './Users'
 import Message from './Message'
 import base from '../base'
 import moment from 'moment'
+import '../stylesheets/components/Chat.scss'
 
 class Chat extends React.Component {
 	constructor(props) {
@@ -111,11 +112,11 @@ class Chat extends React.Component {
 
 		return (
 			<div className="Chat">
-				<div>
+				<div className="Chat-users">
 					<Users user={this.props.params.userId} users={this.state.users} selectRecipient={this.selectRecipient}/>
 				</div>
 				
-				<div>
+				<div className="Chat-chat">
 					<h2>Welcome, {this.props.params.userId}</h2>
 					<p>
 						<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>

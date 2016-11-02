@@ -10,3 +10,14 @@
 .Chat-chat {
 	flex: 4;
 }
+
+.Chat-messages {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.Message {
+	flex: 1 1;
+	min-width: 60px;
+}
