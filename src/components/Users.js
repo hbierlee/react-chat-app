@@ -14,9 +14,8 @@ class Users extends React.Component {
 		}
 
 		const user = this.props.users[userId]
-		console.log({userId})
 		return (
-			<div className="Users-user"
+			<div className="Users-entry"
 				key={index}
 				onClick={() => {this.props.selectRecipient(user.userId)}}>
 				{user.userId}
@@ -29,8 +28,10 @@ class Users extends React.Component {
 		
 		return (
 			<div className="Users">
-				<h2>Users</h2>
-				<div className="Users-users">
+				<div className="Users-header">
+					<h2>Users</h2>
+				</div>
+				<div className="Users-list">
 					{Object.keys(users).map(this.renderUser)}
 				</div>
 			</div>
