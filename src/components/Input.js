@@ -13,7 +13,7 @@ class Input extends Component {
 					disabled={this.props.disabled}
 					placeholder="Type your message here.."
 					rows="3"
-					onKeyUp={(e) => {e.key === 'Enter' ? this.props.submitHandler() : null}}
+					onKeyUp={(e) => {if (e.key === 'Enter') {this.props.submitHandler()}}}
 				/>
 
 				<button
