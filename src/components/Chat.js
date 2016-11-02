@@ -76,8 +76,7 @@ class Chat extends React.Component {
 		this.setState({unsendMessages})
 	}
 
-	submitHandler(event) {
-		event.preventDefault()
+	submitHandler() {
 		const to = this.state.recipient
 		const content = this.state.unsendMessages[to]
 		const timestamp = moment().valueOf()
@@ -99,13 +98,13 @@ class Chat extends React.Component {
 	}
 	
 	componentWillUpdate() {
-		var node = this.chatMessages
+		const node = this.chatMessages
 		this.shouldScrollBottom = node.scrollTop + node.offsetHeight === node.scrollHeight;
 	}
 
 	componentDidUpdate() {
 		if (this.shouldScrollBottom) {
-			var node = this.chatMessages
+			const node = this.chatMessages
 			node.scrollTop = node.scrollHeight
 		}
 	}

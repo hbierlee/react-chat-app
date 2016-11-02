@@ -3,20 +3,23 @@ import '../stylesheets/components/Input.scss'
 
 class Input extends Component {
 	render() {
-		console.log(this.props.disabled)
 		return (
-			<form className="Input" onSubmit={this.props.submitHandler}>
-				<input
+			<form className="Input">
+				<textarea
+					className="Input-textarea"
 					type="text"
-					className="Chat-input"
 					onChange={this.props.inputChangeHandler}
 					value={this.props.inputValue}
 					disabled={this.props.disabled}
+					placeholder="Type your message here.."
+					rows="3"
+					onKeyUp={(e) => {e.key === 'Enter' ? this.props.submitHandler() : null}}
 				/>
 
 				<button
-					className="Chat-send"
+					className="Input-button"
 					type="submit"
+					onClick={this.props.submitHandler}
 					disabled={this.props.disabled}>
 					Send
 				</button>
