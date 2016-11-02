@@ -1,0 +1,12 @@
+.Chat {
+	display: flex;
+	flex-direction: row;
+}
+
+.Chat-users {
+	flex: 1;
+}
+
+.Chat-chat {
+	flex: 4;
+}
