@@ -9,9 +9,7 @@ class App extends Component {
 					<h1>💬&nbsp;React chat app</h1>
 				</div>
 
-				<div className="content">
-					{ React.cloneElement(this.props.children, this.props) }
-				</div>
+				{ React.cloneElement(this.props.children, this.props) }
 
 				<div className="footer">
 					<p>By Henk Bierlee</p>

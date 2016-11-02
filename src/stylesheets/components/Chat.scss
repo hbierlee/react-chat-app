@@ -1,6 +1,8 @@
 .Chat {
 	display: flex;
 	flex-direction: row;
+	height: 100%;
+	width: 100%;
 }
 
 .Chat-users {
@@ -9,15 +11,32 @@
 
 .Chat-chat {
 	flex: 4;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.Chat-header {
+	flex: 1 1 60px;
 }
 
 .Chat-messages {
+	flex: 5;
+
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 }
 
+.Chat-form {
+	flex: 1;
+}
+
 .Message {
 	flex: 1 1;
 	min-width: 60px;
+}
+
+.content {
+	background: blue;
 }

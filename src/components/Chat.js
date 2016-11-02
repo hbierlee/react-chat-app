@@ -117,10 +117,12 @@ class Chat extends React.Component {
 				</div>
 				
 				<div className="Chat-chat">
-					<h2>Welcome, {this.props.params.userId}</h2>
-					<p>
-						<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
-					</p>
+					<div className="Chat-header">
+						<h2>Welcome, {this.props.params.userId}</h2>
+						<p>
+							<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
+						</p>
+					</div>
 
 					<div className="Chat-messages">
 						{messages.map((message, index) => <Message

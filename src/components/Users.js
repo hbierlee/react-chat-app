@@ -1,4 +1,5 @@
 import React from 'react'
+import '../stylesheets/components/Users.scss'
 
 class Users extends React.Component {
 	constructor(props) {
@@ -13,11 +14,12 @@ class Users extends React.Component {
 		}
 
 		const user = this.props.users[userId]
+		console.log({userId})
 		return (
-			<div key={index}>
-				<div className="Users-user">
-					<button onClick={() => {this.props.selectRecipient(user.userId)}}>{user.userId}</button>
-			 	</div>
+			<div className="Users-user"
+				key={index}
+				onClick={() => {this.props.selectRecipient(user.userId)}}>
+				{user.userId}
 			</div>
 		)
 	}
@@ -28,7 +30,7 @@ class Users extends React.Component {
 		return (
 			<div className="Users">
 				<h2>Users</h2>
-				<div>
+				<div className="Users-users">
 					{Object.keys(users).map(this.renderUser)}
 				</div>
 			</div>

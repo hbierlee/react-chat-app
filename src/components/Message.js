@@ -10,7 +10,6 @@ class Message extends Component {
 		// parse unix timestamp String in miliseconds
 		const timeFromNow = moment(message.timestamp, 'x').fromNow()
 		
-		console.log(this.props.messageByUser)
 		const className = classNames(
 			'Message',
 			{messageByUser: this.props.messageByUser},

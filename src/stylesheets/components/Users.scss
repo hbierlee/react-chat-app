@@ -1,0 +1,23 @@
+@import '../palette';
+
+.Users {
+	height: 100%;
+}
+
+.Users-users {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.Users-user {
+	height: 32px;
+	background-color: $background-user;
+	display: flex;
+	align-items: center;
+}
+
+
+.Users-user:hover {
+	opacity: 0.7;
+}
