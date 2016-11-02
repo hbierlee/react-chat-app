@@ -3,7 +3,6 @@ import Users from './Users'
 import Message from './Message'
 import base from '../base'
 import moment from 'moment'
-import Flexbox from 'flexbox-react'
 
 class Chat extends React.Component {
 	constructor(props) {
@@ -111,12 +110,12 @@ class Chat extends React.Component {
 		const inputValue = this.state.unsendMessages[this.state.recipient] ? this.state.unsendMessages[this.state.recipient] : ""
 
 		return (
-			<Flexbox className="Chat" flexDirection="row">
-				<Flexbox flexGrow={1} minWidth="240px" flexBasis="30%">
+			<div className="Chat">
+				<div>
 					<Users user={this.props.params.userId} users={this.state.users} selectRecipient={this.selectRecipient}/>
-				</Flexbox>
+				</div>
 				
-				<Flexbox flexGrow={2} flexDirection="column" flexBasis="70%">
+				<div>
 					<h2>Welcome, {this.props.params.userId}</h2>
 					<p>
 						<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
@@ -142,13 +141,12 @@ class Chat extends React.Component {
 						<button
 							className="Chat-send"
 							type="submit"
-							disabled={!this.state.recipient}
-						>
+							disabled={!this.state.recipient}>
 							Send
 						</button>
 					</form>
-				</Flexbox>
-			</Flexbox>
+				</div>
+			</div>
 		)
 
 	}

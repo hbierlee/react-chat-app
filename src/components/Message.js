@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import moment from 'moment'
 import classNames from 'classnames'
 import '../stylesheets/components/Message.scss'
+// import moment from 'moment'
 
 class Message extends Component {
 	render() {
-		const {message, index} = this.props
+		const message = this.props.message
+
 		// parse unix timestamp String in miliseconds
-		const timeFromNow = moment(message.timestamp, 'x').fromNow()
+		// const timeFromNow = moment(message.timestamp, 'x').fromNow()
 		
 		console.log(this.props.messageByUser)
 		const className = classNames(
@@ -25,17 +26,5 @@ class Message extends Component {
 		);
 	}
 }
-
-/*
-<span className="Chat-message-from">
-	{message.from}:&nbsp;
-</span>
-<span className="Chat-message-content">
-	{message.content}&nbsp;
-</span>
-<span className="Chat-message-time">
-	[{timeFromNow}]
-</span>
-*/
 
 export default Message
