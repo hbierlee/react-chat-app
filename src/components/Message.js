@@ -15,17 +15,17 @@ class Message extends Component {
 			'Message',
 			{messageByUser: this.props.messageByUser},
 			{messageByRecipient: !this.props.messageByUser},
-			)
+		)
 
 		return (
-			<li className={className}>
+			<div className={className}>
 				<p className="Message-content">
 					{message.content}
 				</p>
 				<p className="Message-time">
 					{timeFromNow}
 				</p>
-			</li>
+			</div>
 		);
 	}
 }

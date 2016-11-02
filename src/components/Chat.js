@@ -122,13 +122,13 @@ class Chat extends React.Component {
 						<em>Chatting with {this.state.recipient ? this.state.recipient : 'nobody'}</em>
 					</p>
 
-					<ul className="Chat-messages">
+					<div className="Chat-messages">
 						{messages.map((message, index) => <Message
 							message={message}
 							messageByUser={message.from === this.props.params.userId}
 							key={index}
 						/>)}
-					</ul>
+					</div>
 
 					<form className="Chat-form" onSubmit={this.submitHandler}>
 						<input
