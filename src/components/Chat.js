@@ -1,6 +1,7 @@
 import React from 'react'
 import Users from './Users'
 import Message from './Message'
+import Input from './Input'
 import base from '../base'
 import moment from 'moment'
 import '../stylesheets/components/Chat.scss'
@@ -146,22 +147,14 @@ class Chat extends React.Component {
 						/>)}
 					</div>
 
-					<form className="Chat-form" onSubmit={this.submitHandler}>
-						<input
-							type="text"
-							className="Chat-input"
-							onChange={this.inputChangeHandler}
-							value={inputValue}
-							disabled={!this.state.recipient}
+					<Input
+						className="Chat-input"
+						inputValue={inputValue}
+						inputChangeHandler={this.inputChangeHandler}
+						submitHandler={this.submitHandler}
+						disabled={!this.state.recipient}
+
 						/>
-						
-						<button
-							className="Chat-send"
-							type="submit"
-							disabled={!this.state.recipient}>
-							Send
-						</button>
-					</form>
 				</div>
 			</div>
 		)
