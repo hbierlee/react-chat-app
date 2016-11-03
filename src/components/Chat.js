@@ -88,13 +88,10 @@ class Chat extends React.Component {
 			timestamp,
 		}
 
-		const messages = [...this.state.messages]
-		messages.push(newMessage)
-
 		const unsendMessages = {...this.state.unsendMessages}
 		unsendMessages[to] = ""
 
-		this.setState({messages, unsendMessages})
+		this.setState({messages: this.state.messages.concat(newMessage), unsendMessages})
 	}
 	
 	componentWillUpdate() {
@@ -152,7 +149,6 @@ class Chat extends React.Component {
 						inputChangeHandler={this.inputChangeHandler}
 						submitHandler={this.submitHandler}
 						disabled={!this.state.recipient}
-
 						/>
 				</div>
 			</div>
