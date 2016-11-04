@@ -1,0 +1,73 @@
+{
+	"conversations": [{
+		"recipients": ["Henk", "Piet"],
+		"messages": [{
+			"from": "Henk",
+			"content": "Hello Piet, this is Henk",
+			"timestamp": "1477937115000"
+		}, {
+			"from": "Piet",
+			"content": "Hi Henk, this is Piet!",
+			"timestamp": "1477937120000"
+		}, {
+			"from": "Henk",
+			"content": "Bye Piet from Henk",
+			"timestamp": "1477937135000"
+		}, {
+			"from": "Piet",
+			"content": "Bye bye Henk",
+			"timestamp": "1477937145000"
+		}]
+	}, {
+		"recipients": ["Henk", "Jasper"],
+		"messages": [{
+			"from": "Henk",
+			"content": "Hi Jasper, this is Henk",
+			"timestamp": "1477930115000"
+		}, {
+			"from": "Jasper",
+			"content": "Hi Henk, this is Jasper",
+			"timestamp": "1477931115000"
+		}]
+	}, {
+		"recipients": ["Henk", "Rens"],
+		"messages": [{
+			"from": "Henk",
+			"content": "asdfkhksdfthis is Henk",
+			"timestamp": "1477937115000"
+		}, {
+			"from": "Rens",
+			"content": "asdfkhksdfthis is Rens!",
+			"timestamp": "1477937120000"
+		}, {
+			"from": "Henk",
+			"content": "asdfkhksdffrom Henk",
+			"timestamp": "1477937135000"
+		}, {
+			"from": "Rens",
+			"content": "asdfkhksdf",
+			"timestamp": "1477937145000"
+		}]
+	}
+
+
+	],
+	"users": {
+		"Henk": {
+			"userId": "Henk",
+			"conversations": [0, 1, 2]
+		},
+		"Piet": {
+			"userId": "Piet",
+			"conversations": [0]
+		},
+		"Jasper": {
+			"userId": "Jasper",
+			"conversations": [1]
+		},
+		"Rens": {
+			"userId": "Rens",
+			"conversations": [2]
+		}
+	}
+}

@@ -4,7 +4,7 @@ import '../stylesheets/components/Input.scss'
 class Input extends Component {
 	render() {
 		return (
-			<form className="Input">
+			<div className="Input">
 				<textarea
 					className="Input-textarea"
 					type="text"
@@ -18,12 +18,11 @@ class Input extends Component {
 
 				<button
 					className="Input-button"
-					type="submit"
 					onClick={this.props.submitHandler}
 					disabled={this.props.disabled}>
 					Send
 				</button>
-			</form>
+			</div>
 		)
 	}
 }

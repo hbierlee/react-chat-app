@@ -11,24 +11,17 @@
 
 .Chat-chat {
 	flex: 4;
-
+	
 	display: flex;
 	flex-direction: column;
-
 }
 
 .Chat-header {
 	flex: 1 1 60px;
 }
 
-.Chat-messages {
-	flex: 5;
-
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-
-	overflow-y: scroll;
+.Chat-conversation {
+	flex: 5;	
 }
 
 .Chat-form {

@@ -1,9 +1,10 @@
 import React from 'react'
 import Users from './Users'
-import Message from './Message'
+import Conversation from './Conversation'
 import Input from './Input'
 import base from '../base'
 import moment from 'moment'
+import { getCurrentConversation } from '../helpers'
 import '../stylesheets/components/Chat.scss'
 
 class Chat extends React.Component {
@@ -18,9 +19,11 @@ class Chat extends React.Component {
 
 		// init state
 		this.state = {
+			user: {},
 			users: {},
-			messages: [],
-			recipient: "Jasper",
+			conversation: {},
+			conversations: [],
+			recipient: "",
 			unsendMessages: {},
 		}
 	}
@@ -37,19 +40,28 @@ class Chat extends React.Component {
 		this.usersRef = base.syncState(`users/`, {
 			context: this,
 			state: 'users',
-			then() {this.checkForUser(userId)},
-		})
-
-		this.messagesRef = base.syncState(`messages/`, {
-			context: this,
-			state: 'messages',
+			then() {
+				this.setState({user: this.state.users[userId]})
+				this.checkForUser(userId)
+			}
 		})
 	}
 
 	checkForUser(userId) {
 		if (this.state.users.hasOwnProperty(userId)) {
-			// console.log(`User ${userId} found`)
-			// TODO do something else? load last recipient?
+			//load all conversations that the user is in
+			this.conversationsRef = base.syncState('conversations/', {
+				context: this,
+				state: 'conversations',
+				queries: {
+					orderByKey: true,
+					startAt: Math.min(...this.state.user.conversations).toString(),
+					endAt: Math.max(...this.state.user.conversations).toString(),
+				},
+				then() {
+					this.selectRecipient("Rens")
+				}
+			})
 		}
 		else {
 			this.createUser({userId})
@@ -58,11 +70,18 @@ class Chat extends React.Component {
 
 	componentWillUnmount() {
 		base.removeBinding(this.usersRef)
-		base.removeBinding(this.messagesRef)
+		base.removeBinding(this.conversationsRef)
 	}
 
-	selectRecipient(userId) {
-		this.setState({recipient: userId})
+	selectRecipient(recipientId) {
+		this.setState({
+			recipient: recipientId,
+			conversation: getCurrentConversation(
+				this.state.conversations,
+				this.state.user.userId,
+				this.state.recipient
+			)
+		})
 	}
 
 	inputChangeHandler(event) {
@@ -82,7 +101,7 @@ class Chat extends React.Component {
 		const timestamp = moment().valueOf()
 
 		const newMessage = {
-			from: this.props.params.userId,
+			from: this.state.user.userId,
 			to,
 			content,
 			timestamp,
@@ -91,7 +110,9 @@ class Chat extends React.Component {
 		const unsendMessages = {...this.state.unsendMessages}
 		unsendMessages[to] = ""
 
-		this.setState({messages: this.state.messages.concat(newMessage), unsendMessages})
+		const messages = this.state.conversation.messages.concat(newMessage)
+		console.log(messages)
+		this.setState({messages , unsendMessages})
 	}
 	
 	componentWillUpdate() {
@@ -106,25 +127,20 @@ class Chat extends React.Component {
 		}
 	}
 
+
 	render() {
-		const user = this.props.params.userId
-
-		//TODO replace this by querying firebase smartly
-		const messages = this.state.messages
-			.filter((message) => {
-				return (message.from === this.state.recipient && message.to === user)
-				|| (message.to === this.state.recipient && message.from === user)
-			})
-			.sort((a,b) => {return a.timestamp > b.timestamp})
-
 		const inputValue = this.state.unsendMessages[this.state.recipient] ? this.state.unsendMessages[this.state.recipient] : ""
 
+		console.log('conv',this.state.conversation)
 		return (
 			<div className="Chat">
 				<div className="Chat-users">
-					<Users user={this.props.params.userId} users={this.state.users} selectRecipient={this.selectRecipient}/>
+					 <Users
+					 	user={this.props.params.userId} 
+					 	users={this.state.users} 
+					 	selectRecipient={this.selectRecipient}
+				 	/>
 				</div>
-				
 				<div className="Chat-chat">
 					<div className="Chat-header">
 						<h2>Welcome, {this.props.params.userId}</h2>
@@ -133,27 +149,24 @@ class Chat extends React.Component {
 						</p>
 					</div>
 
-					<div
-						className="Chat-messages"
-						ref={(node) => this.chatMessages = node}>
-						{messages.map((message, index) => <Message
-							message={message}
-							messageByUser={message.from === this.props.params.userId}
-							key={index}
-						/>)}
-					</div>
+					<Conversation
+						className="Chat-conversation"
+						ref={(node) => this.chatMessages = node}
+						conversation={this.state.conversation}
+						userId={this.state.user.userId}
+					/>
 
 					<Input
 						className="Chat-input"
+						conversation={this.state.conversation}
 						inputValue={inputValue}
 						inputChangeHandler={this.inputChangeHandler}
 						submitHandler={this.submitHandler}
 						disabled={!this.state.recipient}
-						/>
+					/>
 				</div>
 			</div>
 		)
-
 	}
 }
 
